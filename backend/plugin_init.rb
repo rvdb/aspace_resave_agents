@@ -16,7 +16,7 @@ RequestContext.in_global_repo do
       # refresh the object and split it out...
       obj.refresh
 
-      $stderr.puts "#{obj.id}: #{json.title} ==> #{klass.to_jsonmodel(obj).title}"
+      $stderr.puts "#{Time.now} - #{obj.id}: #{json.title} ==> #{klass.to_jsonmodel(obj).title}"
 
     end
   end
