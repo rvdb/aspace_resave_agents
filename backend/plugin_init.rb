@@ -27,15 +27,15 @@ RequestContext.in_global_repo do
 
       # only update names that have sort_name_auto_generate
       name_json = name_class.to_jsonmodel(name_obj)
-        if name_obj.is_display_name == 1
-          agent_json = agent_class.to_jsonmodel(agent_id)
-          extras = agent_json
-        else
-          extras = {}
-        end
-        sort_name_updated = processor.process(name_json, extras)
-        name_obj.update(sort_name: sort_name_updated, system_mtime: Time.now)    
-        $stderr.puts "#{Time.now} - #{agent_class} ##{agent_id}, #{name_class} ##{name_obj.id}: #{name_json["sort_name"]} ==> #{sort_name_updated}"
+      if name_obj.is_display_name == 1
+        agent_json = agent_class.to_jsonmodel(agent_id)
+        extras = agent_json
+      else
+        extras = {}
+      end
+      sort_name_updated = processor.process(name_json, extras)
+      name_obj.update(sort_name: sort_name_updated, system_mtime: Time.now)
+      $stderr.puts "#{Time.now} - #{agent_class} ##{agent_id}, #{name_class} ##{name_obj.id}: #{name_json["sort_name"]} ==> #{sort_name_updated}"
 
     end
   end
